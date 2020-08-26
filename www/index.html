@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		
+		<!-- Jquery Mobile Stylesheet-->
+		
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+		
+		<!-- Leaflet Stylesheet-->
+		
+		<link rel="stylesheet" href="css/leaflet.css">
+		
+		
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    
+					
+		<!-- Leaflet Geocoder Stylesheet-->
+		
+		<link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.css"
+		integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g=="
+		crossorigin="">
+		
+		<!-- Custom Stylesheet---->
+		
+		<link rel="stylesheet" href="css/ownstyle.css">
+		
+		<!-- jQuery link-->
+		
+		<script src="js/jquery.min.js"></script>
+		
+		<!-- jQuery Mobile -->
+		
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		
+		<!-- Leaflet js files-->
+		
+		<script src="js/leaflet.js"></script>
+		
+		<script src="js/leaflet-src.esm.js"></script>
+		
+		<script src="js/leaflet-src.js"></script>
+		
+		<script src="js/leaflet.js.map"></script>
+		
+		<script src="js/leaflet-src.esm.js.map"></script>
+		
+		<script src="js/leaflet-src.js.map"></script>
+		
+		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" 
+		integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" 
+		crossorigin=""></script>
+		
+		<!-- Esri Leaflet-->
+		
+		<script src="https://unpkg.com/esri-leaflet@2.5.0/dist/esri-leaflet.js"
+		integrity="sha512-ucw7Grpc+iEQZa711gcjgMBnmd9qju1CICsRaryvX7HJklK0pGl/prxKvtHwpgm5ZHdvAil7YPxI1oWPOWK3UQ=="
+		crossorigin=""></script>
+			
+		<!-- Leaflet Geocoder -->
+		
+		<script src="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.js"
+		integrity="sha512-HrFUyCEtIpxZloTgEKKMq4RFYhxjJkCiF5sDxuAokklOeZ68U2NPfh4MFtyIVWlsKtVbK5GD2/JzFyAfvT5ejA=="
+		crossorigin=""></script>
+		
+				<!-- Vector Tiles -->
+		<script src="https://unpkg.com/esri-leaflet-vector@2.0.2/dist/esri-leaflet-vector.js"
+			integrity="sha512-keaVwrBxpBNq1XF5XEUvQ8NtoBbGPs/gKJJ3tp1qiudO3mTk9YEa6/uPpxX/G2HIjFrquj/xGg+p/c7nDp0wUg=="
+			crossorigin=""></script>
+
+		<!-- Clustered Feature Layer -->
+		<script src="https://unpkg.com/esri-leaflet-cluster@2.1.0/dist/esri-leaflet-cluster.js"
+			integrity="sha512-fEdNFHisleVtEYdLhW4Z2RsR7TN6hLutE/+O4D+skfTNY2rlHm8HOZARPWkdrFFy/+i2KjFxcZAKTUWaVfbV0g=="
+			crossorigin=""></script>
+
+
+		<!-- Renderers Plugin -->
+		<script src="https://unpkg.com/esri-leaflet-renderers@2.1.2/dist/esri-leaflet-renderers.js"
+			integrity="sha512-/McnqdlwYvfeOEWqoniEagFRQnLi/TNbkHe4EJypmZI02LBT7vBU/+PZ5W3FSsFFlRbnMCsJvnbp5MX8XOBrnQ=="
+			crossorigin=""></script>
+
+		<!-- Geoprocessing Plugin -->
+		<script src="https://unpkg.com/esri-leaflet-gp@2.0.3/dist/esri-leaflet-gp.js"
+			integrity="sha512-pYExthzLUD0etGnsvN2vg1LOEBd0nAfIwgZWlxavdBPNc2JT+f9hDQrXJrIhHK5WmuHVAuAb8jDekD36P/pXhg=="
+			crossorigin=""></script>
+		
+		<!-- Load Esri Leaflet Renderers plugin to use feature service symbology -->
+		 <script src="https://unpkg.com/esri-leaflet-renderers@2.1.2" 
+			integrity="sha512-/McnqdlwYvfeOEWqoniEagFRQnLi/TNbkHe4EJypmZI02LBT7vBU/+PZ5W3FSsFFlRbnMCsJvnbp5MX8XOBrnQ=="
+			crossorigin=""></script>
+			
+			
+		<!-- Link to cordova.js -->
+		<script src="cordova.js"></script>
+		
+	</head>
+	
+	<body>
+		<!--Home Page -->
+		<div data-role="page" id="pg1">
+			
+			<div data-role="header" data-theme="b">
+				<h1>Simple Geolocator</h1>
+				<div data-role="navbar">
+				<ul>
+					<li><a href="#" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-home ui-btn-icon-top">Home</a></li>
+					<li><a href="#pg2" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-top" data-transition="slide">Geolocator</a></li>
+					<li><a href="#pg4" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-info ui-btn-icon-top" data-transition="slide">Help</a></li>
+				</ul>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div data-role="main" class="ui-content">
+				<p class="center-wrapper">This is a jQuery mobile exercise which provides the user with a geolocator for finding basic navigational details on a map</p>
+			</div>
+			<br>
+			<br>
+			<div data-role="footer" data-theme="b">
+				<h4>Author:Surjitsing Chundunsing</h4>
+			</div>
+		</div>
+		
+		<!--Geolocator Menu Page -->
+		
+		<div data-role="page" id="pg2">
+			
+			<div data-role="header" data-theme="b">
+				<h1>Simple Geolocator</h1>
+				<div data-role="navbar">
+				<ul>
+					<li><a href="#pg1" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-home ui-btn-icon-top" data-transition="slide">Home</a></li>
+					<li><a href="#" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-top">Geolocator</a></li>
+					<li><a href="#pg4" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-info ui-btn-icon-top" data-transition="slide">Help</a></li>
+				</ul>
+				</div>
+			</div>
+			<br>
+			<div data-role="main" class="ui-content">
+			<h1 class="center-wrapper">🌍📋GeoMap📋🌍</h1>
+				<div data-role="controlgroup" style="margin-left:15%;width:70%;">
+					<a href="#pg31" class="ui-btn  ui-btn-b ui-shadow ui-corner-all ui-icon-location ui-btn-icon-right">My Location</a>
+					
+					<a href="#pg32" class="ui-btn  ui-btn-b ui-shadow ui-corner-all ui-icon-search ui-btn-icon-right" style="margin-top:1%;">Search Location</a>
+					
+					<a href="#pg33" class="ui-btn  ui-btn-b ui-shadow ui-corner-all ui-icon-navigation ui-btn-icon-right" style="margin-top:1%;">What's Around?</a>
+				</div>
+
+			</div>
+			<br>
+			<div data-role="footer" data-theme="b">
+				<h4>Author:Surjitsing Chundunsing</h4>
+			</div>
+			
+		</div>
+		
+		<!--My Location Page -->
+		
+		<div data-role="page" id="pg31">
+			
+			<div data-role="header" data-theme="b">
+				<h1>Simple Geolocator</h1>
+				<div data-role="navbar">
+				<ul>
+					<li><a href="#pg1" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-home ui-btn-icon-top" data-transition="slide">Home</a></li>
+					<li><a href="#pg2" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-top" data-transition="slide">Geolocator</a></li>
+					<li><a href="#pg4" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-info ui-btn-icon-top" data-transition="slide">Help</a></li>
+				</ul>
+				</div>
+			</div>
+			
+			<div data-role="main" class="ui-content">
+		 <div id="mapid"></div>
+		 <script>
+	
+					//initialise map object
+					var mymap = L.map('mapid').setView([-20.0700649,57.569276200000004], 14);
+					
+					
+
+					var blueIcon = L.icon({
+						iconUrl: 'img/marker-icon.png',
+						shadowUrl: 'img/marker-shadow.png',
+
+						iconSize:     [30, 40], // size of the icon
+						iconAnchor:   [22, 38], // point of the icon which will correspond to marker's location
+						shadowAnchor: [22, 38],  // the same for the shadow
+						popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
+					});			
+					
+					//initialise tilelayer providing necessary attribution to service providers
+						
+					L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(mymap);
+					
+					//add a marker
+					var marker = L.marker([-20.0700649,57.569276200000004],{icon: blueIcon}).addTo(mymap);
+					marker.bindPopup("🏡My Current Location🏡");
+					
+					
+					
+					var circle = L.circle([-20.0700649,57.569276200000004], {
+					 color: 'red',
+					 fillColor: '#f03',
+					 fillOpacity: 0.25,
+					 radius: 200
+					}).addTo(mymap);
+					circle.bindPopup("👀Any Treasure Here?👀");
+					
+					var popup = L.popup();
+
+					function onMapClick(e) 
+					{
+						popup
+							.setLatLng(e.latlng)
+							.setContent("Keshav,This place has 🌍-coordinates:" + e.latlng.toString())
+							.openOn(mymap);
+					}
+
+					mymap.on('click', onMapClick);
+					map.invalidateSize();
+		 </script>
+
+				
+			</div>
+			
+			<div data-role="footer" data-theme="b">
+				<h4>Author:Surjitsing Chundunsing</h4>
+			</div>
+			
+		</div>
+		
+		<!--Search Location Page -->
+		
+		<div data-role="page" id="pg32">
+			
+			<div data-role="header" data-theme="b">
+				<h1>Simple Geolocator</h1>
+				<div data-role="navbar">
+				<ul>
+					<li><a href="#pg1" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-home ui-btn-icon-top" data-transition="slide">Home</a></li>
+					<li><a href="#pg2" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-top" data-transition="slide">Geolocator</a></li>
+					<li><a href="#pg4" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-info ui-btn-icon-top" data-transition="slide">Help</a></li>
+				</ul>
+				</div>
+			</div>
+			
+			<div data-role="main" class="ui-content">
+				<div id="mapid2"></div>
+				<script>
+
+						  //initialise map object
+							var map = L.map("mapid2").setView([-20.0700649,57.569276200000004], 14);
+						  //initialise tilelayer providing necessary attribution to service providers
+						  
+							L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+						  
+							var blueIcon = L.icon({
+							iconUrl: 'img/marker-icon.png',
+							shadowUrl: 'img/marker-shadow.png',
+
+							iconSize:     [30, 40], // size of the icon
+							iconAnchor:   [22, 38], // point of the icon which will correspond to marker's location
+							shadowAnchor: [22, 38],  // the same for the shadow
+							popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
+						  });
+
+						  var redIcon = L.icon({
+							iconUrl: 'img/marker-red.png',
+							shadowUrl: 'img/marker-shadow.png',
+
+							iconSize:     [36, 40], // size of the icon
+							iconAnchor:   [22, 38], // point of the icon which will correspond to marker's location
+							shadowAnchor: [22, 38],  // the same for the shadow
+							popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
+						  });	
+
+						  var yellowIcon = L.icon({
+							iconUrl: 'img/marker-yellow.png',
+							shadowUrl: 'img/marker-shadow.png',
+							
+							iconSize:     [36, 40], // size of the icon
+							iconAnchor:   [22, 38], // point of the icon which will correspond to marker's location
+							shadowAnchor: [22, 38],  // the same for the shadow
+							popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
+						  });	
+
+						  var greenIcon = L.icon({
+							iconUrl: 'img/marker-green.png',
+							shadowUrl: 'img/marker-shadow.png',
+
+							iconSize:     [36, 40], // size of the icon
+							iconAnchor:   [22, 38], // point of the icon which will correspond to marker's location
+							shadowAnchor: [22, 38],  // the same for the shadow
+							popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
+						  });						  
+
+
+						  var blackIcon = L.icon({
+							iconUrl: 'img/marker-black.png',
+							shadowUrl: 'img/marker-shadow.png',
+
+							iconSize:     [36, 40], // size of the icon
+							iconAnchor:   [22, 38], // point of the icon which will correspond to marker's location
+							shadowAnchor: [22, 38],  // the same for the shadow
+							popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
+						  });	
+
+							
+						  //add marker
+						  var marker = L.marker([-20.0700649,57.569276200000004],{icon: blueIcon}).addTo(map);
+						  marker.bindPopup("🏡My Current Location🏡");
+						  
+						  
+							//add popup to display location details on any point clicked on the map
+							var popup = L.popup();
+
+							function onMapClick(e) {
+								popup
+									.setLatLng(e.latlng)
+									.setContent("Keshav,This place has 🌍-coordinates:" + e.latlng.toString())
+									.openOn(map);
+							}
+
+							map.on('click', onMapClick);
+						  
+
+						  // create the geocoding control and add it to the map
+						  var searchControl = L.esri.Geocoding.geosearch().addTo(map);
+
+						  // create an empty layer group to store the results and add it to the map
+						  var results = L.layerGroup().addTo(map);
+
+						  // listen for the results event and add every result to the map
+						  searchControl.on("results", function (data) {
+							results.clearLayers();
+							for (var i = data.results.length - 1; i >= 0; i--) {
+							  results.addLayer(L.marker(data.results[i].latlng,{icon: redIcon}).addTo(map));
+							  results.bindPopup("👀Your Searched Location👀");
+							}
+						  });
+						  
+						  map.invalidateSize();
+						
+				</script>	
+			</div>
+			
+			<div data-role="footer" data-theme="b">
+				<h4>Author:Surjitsing Chundunsing</h4>
+			</div>
+			
+		</div>
+		
+		<!--What's around Page -->
+		
+		<div data-role="page" id="pg33">
+			
+			<div data-role="header" data-theme="b">
+				<h1>Simple Geolocator</h1>
+				<div data-role="navbar">
+				<ul>
+					<li><a href="#pg1" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-home ui-btn-icon-top" data-transition="slide">Home</a></li>
+					<li><a href="#pg2" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-top" data-transition="slide">Geolocator</a></li>
+					<li><a href="#pg4" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-info ui-btn-icon-top" data-transition="slide">Help</a></li>
+				</ul>
+				</div>
+			</div>
+			
+			<div data-role="main" class="ui-content">		
+				<div id="mapid3"></div>
+				<script>
+						var map = L.map('mapid3').setView([-20.0700649,57.569276200000004], 13);
+
+							L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+							var blueIcon = L.icon({
+							iconUrl: 'img/marker-icon.png',
+							shadowUrl: 'img/marker-shadow.png',
+
+							iconSize:     [30, 40], // size of the icon
+							iconAnchor:   [22, 38], // point of the icon which will correspond to marker's location
+							shadowAnchor: [22, 38],  // the same for the shadow
+							popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
+						  });
+							
+							
+							
+							var geocodeService = L.esri.Geocoding.geocodeService();
+
+							map.on('click', function(e) 
+							{
+								geocodeService.reverse().latlng(e.latlng).run(function(error, result) 
+								{
+									L.marker(result.latlng,{icon: blueIcon}).addTo(map).bindPopup(result.address.Match_addr).openPopup();
+								});
+							});
+							
+							map.invalidateSize();
+							
+					</script>
+			
+			</div>
+			
+			<div data-role="footer" data-theme="b">
+				<h4>Author:Surjitsing Chundunsing</h4>
+			</div>
+			
+		</div>
+		
+		
+		<!--Help Page -->
+
+		<div data-role="page" id="pg4">
+			
+			<div data-role="header" data-theme="b">
+				<h1>Simple Geolocator</h1>
+				<div data-role="navbar">
+				<ul>
+					<li><a href="#pg1" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-home ui-btn-icon-top" data-transition="slide">Home</a></li>
+					<li><a href="#pg2" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-top" data-transition="slide">Geolocator</a></li>
+					<li><a href="#" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-info ui-btn-icon-top">Help</a></li>
+				</ul>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div data-role="main" class="ui-content">
+				<p class="center-wrapper">This is the help section and provides basic information about how to use the Geolocator.</p>
+				<br>
+				<a href="#pg5" class="ui-btn  ui-btn-a ui-shadow ui-corner-all ui-icon-info ui-btn-icon-left"  data-transition="pop">More Info</a>
+			</div>
+			<br>
+			<br>
+			<div data-role="footer" data-theme="b">
+				<h4>Author:Surjitsing Chundunsing</h4>
+			</div>
+			
+		</div>
+		
+		<!--Additional Help Page -->
+		
+		<div data-role="page" data-dialog="true" id="pg5">
+			
+			<div data-role="header">
+				<h1>More Info</h1>
+			</div>
+			<br>
+			<br>
+			<div data-role="main" class="ui-content">
+				<p class="center-wrapper">You have requested more information about the App!</p>
+				<br>
+				<a href="#pg4" class="ui-btn ui-btn-a ui-shadow ui-corner-all ui-icon-back ui-btn-icon-left" data-transition="pop" >Dismiss</a>
+			</div>
+			<br>
+		</div>
+		
+	</body>
+<html>
